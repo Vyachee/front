@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Wheres the toilet</string>
+    <string name="register">Регистрация</string>
+    <string name="username">Имя пользователя</string>
+    <string name="example_mail_com">example@mail.com</string>
+    <string name="password">Пароль</string>
+    <string name="password_repeat">Повтор пароля</string>
+    <string name="do_reg">Зарегистрироваться</string>
+    <string name="already_have_account">У меня уже есть аккаунт</string>
+</resources>
