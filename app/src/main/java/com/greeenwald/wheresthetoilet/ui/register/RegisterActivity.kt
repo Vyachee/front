@@ -2,11 +2,10 @@ package com.greeenwald.wheresthetoilet.ui.register
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import com.greeenwald.wheresthetoilet.R
+import android.widget.Toast
 import com.greeenwald.wheresthetoilet.common.Animator
 import com.greeenwald.wheresthetoilet.databinding.ActivityMainBinding
-import com.greeenwald.wheresthetoilet.ui.common.UserData
+import com.greeenwald.wheresthetoilet.common.UserData
 
 class RegisterActivity : AppCompatActivity(), RegisterContractView {
 
@@ -36,13 +35,13 @@ class RegisterActivity : AppCompatActivity(), RegisterContractView {
     }
 
     override fun getUserData(): UserData {
-        val username = binding.etUsername.text.toString()
+        val nickname = binding.etUsername.text.toString()
         val email = binding.etEmail.text.toString()
         val password = binding.etPassword.text.toString()
         val passwordRepeat = binding.etPasswordRepeat.text.toString()
 
         return UserData(
-            username,
+            nickname,
             email,
             password,
             passwordRepeat
@@ -50,11 +49,21 @@ class RegisterActivity : AppCompatActivity(), RegisterContractView {
     }
 
     override fun showLoading() {
-        Animator().fadeIn(binding.clLoader)
+        Animator(this).fadeIn(binding.clLoader)
     }
 
     override fun hideLoading() {
-        Animator().fadeOut(binding.clLoader)
+        Animator(this).fadeOut(binding.clLoader)
+    }
+
+    override fun showMessage(message: String) {
+
+        // Temporary solution
+        // I want cool window with custom view instead
+
+        runOnUiThread {
+            Toast.makeText(baseContext, message, Toast.LENGTH_LONG).show()
+        }
     }
 
 
