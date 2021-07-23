@@ -12,6 +12,7 @@ class ErrorDecoder {
             "PasswordRequiresDigit" -> return "Пароль должен содержать цифры"
             "PasswordRequiresUniqueChars" -> return "Пароль не должен быть пустым"
             "DuplicateUserName" -> return "Такой Email уже зарегистрирован"
+            "error_password" -> return "Неверный логин или пароль"
         }
 
         return "Произошла неизвестная ошибка"

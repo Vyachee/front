@@ -1,13 +1,12 @@
-package com.greeenwald.wheresthetoilet.ui.register
+package com.greeenwald.wheresthetoilet.ui.auth
 
 import com.greeenwald.wheresthetoilet.common.UserData
 
-interface RegisterContractView {
+interface LoginContractView {
     fun getUserData(): UserData
     fun showLoading()
     fun hideLoading()
-    fun goLicence()
-    fun goToLogin()
+    fun goToRegister()
     fun clearFields()
     fun toggleButtonEnabled(state: Boolean)
     fun showMessage(message: String)

@@ -1,16 +1,24 @@
 package com.greeenwald.wheresthetoilet.ui.register
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.greeenwald.wheresthetoilet.common.Animator
-import com.greeenwald.wheresthetoilet.databinding.ActivityMainBinding
 import com.greeenwald.wheresthetoilet.common.UserData
+import com.greeenwald.wheresthetoilet.databinding.ActivityMainBinding
+import com.greeenwald.wheresthetoilet.ui.LicenceActivity
+import com.greeenwald.wheresthetoilet.ui.auth.LoginActivity
+import java.util.regex.Pattern
 
 class RegisterActivity : AppCompatActivity(), RegisterContractView {
 
     lateinit var binding: ActivityMainBinding
     lateinit var presenter: RegisterPresenter
+    lateinit var inputs: Array<EditText>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,12 +33,46 @@ class RegisterActivity : AppCompatActivity(), RegisterContractView {
         presenter = RegisterPresenter(model)
         presenter.attachView(this)
 
+
+        inputs = arrayOf(
+            binding.etEmail,
+            binding.etPassword,
+            binding.etPasswordRepeat,
+            binding.etUsername,
+        )
+
+
         initListeners()
     }
 
     private fun initListeners() {
         binding.btnReg.setOnClickListener {
             presenter.makeRegister()
+        }
+
+        for (input in inputs) {
+            input.addTextChangedListener(object: TextWatcher {
+                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+                }
+
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+                }
+
+                override fun afterTextChanged(s: Editable?) {
+                    presenter.toggleButton()
+                }
+
+            })
+        }
+
+        binding.tvGoLogin.setOnClickListener {
+            goToLogin()
+        }
+
+        binding.tvPersonalData.setOnClickListener {
+            goLicence()
         }
     }
 
@@ -54,6 +96,26 @@ class RegisterActivity : AppCompatActivity(), RegisterContractView {
 
     override fun hideLoading() {
         Animator(this).fadeOut(binding.clLoader)
+    }
+
+    override fun goLicence() {
+        startActivity(Intent(this, LicenceActivity::class.java))
+    }
+
+    override fun goToLogin() {
+        startActivity(Intent(this, LoginActivity::class.java))
+    }
+
+    override fun clearFields() {
+        for(input in inputs) {
+            input.setText("")
+        }
+    }
+
+    override fun toggleButtonEnabled(state: Boolean) {
+        runOnUiThread {
+            binding.btnReg.isEnabled = state
+        }
     }
 
     override fun showMessage(message: String) {

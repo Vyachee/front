@@ -62,17 +62,18 @@
             android:id="@+id/btn_reg"
             android:layout_width="0dp"
             android:layout_height="38dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="16dp"
             android:background="@drawable/button_background"
             android:elevation="0dp"
-            android:textSize="13sp"
+            android:enabled="false"
             android:fontFamily="@font/roboto"
             android:maxHeight="16dp"
             android:text="@string/do_reg"
             android:textAllCaps="false"
+            android:textSize="13sp"
             app:layout_constraintEnd_toEndOf="@+id/et_password_repeat"
             app:layout_constraintStart_toStartOf="@+id/et_password_repeat"
-            app:layout_constraintTop_toBottomOf="@+id/et_password_repeat" />
+            app:layout_constraintTop_toBottomOf="@+id/flexboxLayout" />
 
         <EditText
             android:id="@+id/et_password"
@@ -111,6 +112,30 @@
             app:layout_constraintEnd_toEndOf="@+id/btn_reg"
             app:layout_constraintStart_toStartOf="@+id/btn_reg"
             app:layout_constraintTop_toBottomOf="@+id/btn_reg" />
+
+        <com.google.android.flexbox.FlexboxLayout
+            android:id="@+id/flexboxLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            app:flexWrap="wrap"
+            app:layout_constraintEnd_toEndOf="@+id/et_password_repeat"
+            app:layout_constraintStart_toStartOf="@+id/et_password_repeat"
+            app:layout_constraintTop_toBottomOf="@+id/et_password_repeat">
+
+            <TextView
+                android:id="@+id/tv_personal_data"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="13sp"
+                android:fontFamily="@font/roboto_light"
+                android:textColor="@color/default_blue"
+                android:text="Регистрируясь, вы даёте своё согласие на обработку персональных данных"
+                app:layout_constraintStart_toStartOf="@+id/et_password_repeat"
+                app:layout_constraintTop_toBottomOf="@+id/et_password_repeat" />
+
+        </com.google.android.flexbox.FlexboxLayout>
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

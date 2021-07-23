@@ -9,7 +9,8 @@ import javax.net.ssl.*
 
 
 class Network {
-    val baseUrl = "https://192.168.31.242:44373/api/"
+//    val baseUrl = "https://192.168.31.242:44373/api/"
+    val baseUrl = "https://192.168.0.104:44373/api/"
 
     fun getUnsafeOkHttpClient(): OkHttpClient? {
         return try {

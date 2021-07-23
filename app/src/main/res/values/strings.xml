@@ -7,4 +7,8 @@
     <string name="password_repeat">Повтор пароля</string>
     <string name="do_reg">Зарегистрироваться</string>
     <string name="already_have_account">У меня уже есть аккаунт</string>
+    <string name="back">Назад</string>
+    <string name="login">Вход</string>
+    <string name="login_proceed">Войти</string>
+    <string name="dont_have_account">У меня ещё нет аккаунта</string>
 </resources>

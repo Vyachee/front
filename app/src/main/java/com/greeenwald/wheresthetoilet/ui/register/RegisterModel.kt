@@ -6,22 +6,17 @@ import com.greeenwald.wheresthetoilet.common.Network
 import com.greeenwald.wheresthetoilet.common.UserData
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.IOException
 
 class RegisterModel {
     fun doRegister(userData: UserData?, callback: OnRegisterCallback) {
-        // TODO
 
         val client = Network().getUnsafeOkHttpClient()
         val mediaTypeJson = "application/json; charset=utf-8".toMediaType()
-
         val requestJson = Gson().toJson(userData, UserData::class.java)
-        Log.d("DEBUG", "RequestJson: $requestJson")
-
-        val requestBody = RequestBody.create(mediaTypeJson, requestJson)
-
+        val requestBody = requestJson.toRequestBody(mediaTypeJson)
         val url = "${Network().baseUrl}Authorize/Register"
-        Log.d("DEBUG", "Url: $url")
 
         val request = Request.Builder()
             .url(url)
@@ -30,7 +25,7 @@ class RegisterModel {
 
         client?.newCall(request)?.enqueue(object: Callback {
             override fun onFailure(call: Call, e: IOException) {
-                e.printStackTrace()
+                callback.registerFailed()
             }
 
             override fun onResponse(call: Call, response: Response) {
@@ -42,5 +37,7 @@ class RegisterModel {
 
     interface OnRegisterCallback {
         fun registerRequestComplete(response: String)
+        fun registerFailed()
     }
+
 }

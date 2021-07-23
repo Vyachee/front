@@ -4,9 +4,9 @@ import java.io.Serializable
 
 data class UserData(
 
-    val nickname: String,
+    val nickname: String = "",
     val email: String,
     val password: String,
-    val password_repeat: String
+    val password_repeat: String = ""
 
     ): Serializable
