@@ -11,4 +11,5 @@
     <string name="login">Вход</string>
     <string name="login_proceed">Войти</string>
     <string name="dont_have_account">У меня ещё нет аккаунта</string>
+    <string name="title_activity_map">Map</string>
 </resources>

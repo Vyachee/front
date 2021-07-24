@@ -1,5 +1,7 @@
 package com.greeenwald.wheresthetoilet.ui.auth
 
+import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
@@ -10,6 +12,7 @@ import com.greeenwald.wheresthetoilet.R
 import com.greeenwald.wheresthetoilet.common.Animator
 import com.greeenwald.wheresthetoilet.common.UserData
 import com.greeenwald.wheresthetoilet.databinding.ActivityLoginBinding
+import com.greeenwald.wheresthetoilet.ui.main.MapActivity
 
 class LoginActivity : AppCompatActivity(), LoginContractView {
 
@@ -91,11 +94,17 @@ class LoginActivity : AppCompatActivity(), LoginContractView {
         finish()
     }
 
+    override fun goMainScreen() {
+        startActivity(Intent(this, MapActivity::class.java))
+    }
+
     override fun clearFields() {
         for(input in inputs) {
             input.setText("")
         }
     }
+
+    override fun getContext(): Context = this
 
     override fun toggleButtonEnabled(state: Boolean) {
         runOnUiThread {

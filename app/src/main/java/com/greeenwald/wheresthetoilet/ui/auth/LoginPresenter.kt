@@ -3,6 +3,7 @@ package com.greeenwald.wheresthetoilet.ui.auth
 import android.util.Log
 import android.util.Patterns
 import com.google.gson.Gson
+import com.greeenwald.wheresthetoilet.common.CacheHelper
 import com.greeenwald.wheresthetoilet.common.ErrorDecoder
 import com.greeenwald.wheresthetoilet.common.ErrorsData
 
@@ -43,9 +44,11 @@ class LoginPresenter(val model: LoginModel) {
                     }   else {
                         view?.clearFields()
                         view?.showMessage("Успешная авторизация!")
-                    }
 
-                    // todo save cookie somewhere
+                        view?.getContext()?.let { CacheHelper(it).writeCookie(cookie) }
+                        view?.goMainScreen()
+
+                    }
                 }
             }
 
